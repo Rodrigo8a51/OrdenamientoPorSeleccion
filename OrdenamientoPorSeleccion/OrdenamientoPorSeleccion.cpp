@@ -2,18 +2,27 @@
 using namespace std;
 
 void seleccion(int numeros[], int n) {
+    int comparaciones = 0;
+    int intercambios = 0;
+
     for (int i = 0; i < n - 1; i++) {
         int menor = i;
 
         for (int j = i + 1; j < n; j++) {
+            comparaciones++;
+
             if (numeros[j] < numeros[menor]) {
                 menor = j;
             }
         }
 
-        int temp = numeros[i];
-        numeros[i] = numeros[menor];
-        numeros[menor] = temp;
+        if (menor != i) {
+            int temp = numeros[i];
+            numeros[i] = numeros[menor];
+            numeros[menor] = temp;
+
+            intercambios++;
+        }
 
         cout << "Pasada " << i + 1 << ":" << endl;
 
@@ -23,6 +32,9 @@ void seleccion(int numeros[], int n) {
 
         cout << endl << endl;
     }
+
+    cout << "Comparaciones hechas: " << comparaciones << endl;
+    cout << "Intercambios hechos: " << intercambios << endl;
 }
 
 int main() {
